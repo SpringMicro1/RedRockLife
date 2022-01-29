@@ -1,0 +1,294 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Checkout - RedRock Life</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="icon" href="../images/icon.png">
+		<style>
+			.StripeElement {
+				box-sizing: border-box;
+	
+				height: 40px;
+	
+				padding: 10px 12px;
+	
+				border: 1px solid transparent;
+				border-radius: 4px;
+				background-color: white;
+	
+				box-shadow: 0 1px 3px 0 #e6ebf1;
+				-webkit-transition: box-shadow 150ms ease;
+				transition: box-shadow 150ms ease;
+	
+				margin: auto;
+				max-width: 60%;
+			}
+	
+			.StripeElement--focus {
+				box-shadow: 0 1px 3px 0 #cfd7df;
+			}
+	
+			.StripeElement--invalid {
+				border-color: #fa755a;
+			}
+	
+			.StripeElement--webkit-autofill {
+				background-color: #fefde5 !important;
+			}
+		</style>
+	</head>
+	<body class="landing is-preload">
+
+		<!-- Header -->
+			<header id="header" class="alt">
+				<h1 id="logo"><a href="index.html">RedRock-Life</a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="login.html">Login</a></li>
+						<li><a href="products.html">Products</a></li>
+						<li><a href="checkout.html">Checkout</a></li>
+						<li><a href="index.html#four" class="button alt">Sign Up</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Main -->
+			<section id="banner" class="checkout-banner">
+				<h2 class="small-heading">Checkout</h2>
+			</section>
+
+			<section id="one" class="wrapper checkout-main">
+				<h3>Your Cart</h3>
+				<div class="table-wrapper">
+					<table>
+						<thead>
+							<tr>
+								<th></th>
+								<th>Name</th>
+								<th>Amount</th>
+								<th>Ingredients</th>
+								<th>Price</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><div class="icon solid fa-times pointer-cursor"></div></td>
+								<td>Original</td>
+								<td>30</td>
+								<td>Cayenne, Cinnamon, Ginger, Ginseng, Milk Thistle & Lecithin.</td>
+								<td>$31.25</td>
+							</tr>
+							<tr>
+								<td><div class="icon solid fa-times pointer-cursor"></div></td>
+								<td>Kids</td>
+								<td>90</td>
+								<td>Cayenne 95, Cinnamon, Ginger, Milk Thistle & Lecithin.</td>
+								<td>$66.97</td>
+							</tr>
+							<tr>
+								<td><div class="icon solid fa-times pointer-cursor"></div></td>
+								<td>Caymeric</td>
+								<td>60</td>
+								<td>Cayenne 95, Cinnamon, Tumeric, Moringa, Milk Thistle & Lecithin.</td>
+								<td>$51.96</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>Tax</td>
+								<td>$7.51</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="3"></td>
+								<td>Total</td>
+								<td>$157.69</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+
+				<script src="https://js.stripe.com/v3/"></script> 
+
+				<!-- Show these lines if the user is NOT signed in -->
+				<h4><a href="login.html" class="checkout-link">Sign In</a> or <a href="index.html#four" class="checkout-link">Create an Account</a> to collect rewards and discover awesome deals!</h4>
+				<button id="checkout-form-button" class="checkout-form-button">Continue without an account</button>
+
+				<!-- Show this form if the user IS signed in
+					or if the user presses the button above -->
+				<form method="post" action="#" class="checkout-form" id="checkout-form">
+                <h4>Mailing Address</h4>
+                <div class="mailing-address-form row gtr-uniform gtr-50">
+                    <div class="row gtr-uniform gtr-50 col-6 col-12-xsmall">
+                        <!-- If they are signed in, set the value="" to their account info -->
+                        <div class="col-12">
+                            <input type="text" name="full-name" id="full-name" value="" placeholder="Full Name">
+                        </div>
+                        <div class="col-12">
+                            <input type="email" name="email" id="email" value="" placeholder="Email">
+                        </div>
+                        <div class="col-12">
+                            <input type="text" name="address" id="address" value="" placeholder="Address">
+                        </div>
+                    </div>
+                    <div class="row gtr-uniform gtr-50 col-6 col-12-xsmall">
+                        <div class="col-12">
+                            <input type="text" name="city" id="city" value="" placeholder="City">
+                        </div>
+                        <div class="col-12">
+                            <input type="text" name="state" id="state" value="" placeholder="State">
+                        </div>
+                        <div class="col-12">
+                            <input type="number" name="zip" id="zip" value="" placeholder="Zip Code">
+                        </div>
+                    </div>
+				</div>
+				<br/>
+				<div id="stripe-form" class="form-row center">
+					<h4>Credit or debit card</h4>
+					<div id="card-element">
+						<!-- A Stripe Element will be inserted here. -->
+					</div>
+
+					<!-- Used to display form errors. -->
+					<div id="card-errors" role="alert"></div>
+				</div>
+                <div class="col-12">
+                        <ul class="actions">
+                            <li>
+                                <input type="submit" value="Order" class="primary">
+                            </li>
+                        </ul>
+                    </div>
+            </form>
+			</section>
+
+		<!-- Footer -->
+			<div id="footer">
+				<div class="container">
+					<div class="row gtr-200 gtr-uniform">
+						<section class="col-4 col-12-medium col-12-xsmall footer-info">
+							<h3>Contact Us</h3><br/>
+							<ul class="labeled-icons">
+								<li>
+									<h4 class="icon solid fa-home"><span class="label">Address</span></h4>
+									1234 Somewhere Road #5403<br />
+									Nashville, TN 00000
+								</li>
+							</ul>
+						</section>
+						<section class="col-4 col-6-medium col-12-xsmall">
+							<ul class="labeled-icons">
+								<li>
+									<h4 class="icon solid fa-phone"><span class="label">Phone</span></h4>
+									(000) 555-0000 x12345
+								</li>
+								<li>
+									<h4 class="icon solid fa-envelope"><span class="label">Email</span></h4>
+									<a href="#">hello@untitled.tld</a>
+								</li>
+							</ul>
+						</section>
+						<section class="col-4 col-6-medium col-12-xsmall">
+							<ul class="labeled-icons">
+								<li>
+									<h4 class="icon brands fa-facebook-f"><span class="label">Facebook</span></h4>
+									<a href="https://www.facebook.com/pg/Spring-Micro-Software-316365665157875">facebook.com/pg/Spring-Micro-Software-316365665157875</a>
+								</li>
+								<li>
+									<h4 class="icon brands fa-twitter"><span class="label">Twitter</span></h4>
+									<a href="https://twitter.com/springmicro">twitter.com/springmicro</a>
+								</li>
+							</ul>
+						</section>
+					</div>
+				</div>
+				<div class="copyright">
+					<a href="https://www.springmicro.com">&copy; SpringMicro 2020. All rights reserved.</a>
+				</div>
+			</div>
+
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script>
+				var stripe = Stripe('pk_test_susTNzSGffUsTxg1QEZe9eoK');
+				var elements = stripe.elements();
+		
+				// Custom styling can be passed to options when creating an Element.
+				// (Note that this demo uses a wider set of styles than the guide below.)
+				var style = {
+					base: {
+						color: '#32325d',
+						fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+						fontSmoothing: 'antialiased',
+						fontSize: '16px',
+						'::placeholder': {
+							color: '#aab7c4'
+						},
+					},
+					invalid: {
+						color: '#fa755a',
+						iconColor: '#fa755a'
+					}
+				};
+		
+				// Create an instance of the card Element.
+				var card = elements.create('card', {style: style});
+		
+				// Add an instance of the card Element into the `card-element` <div>.
+				card.mount('#card-element');
+		
+				// Handle real-time validation errors from the card Element.
+				card.on('change', function(event) {
+					var displayError = document.getElementById('card-errors');
+					if (event.error) {
+						displayError.textContent = event.error.message;
+					} else {
+						displayError.textContent = '';
+					}
+				});
+		
+				// Handle form submission.
+				var form = document.getElementById('checkout-form');
+				form.addEventListener('submit', function(event) {
+					event.preventDefault();
+		
+					stripe.createToken(card).then(function(result) {
+						if (result.error) {
+							// Inform the user if there was an error.
+							var errorElement = document.getElementById('card-errors');
+							errorElement.textContent = result.error.message;
+						} else {
+							// Send the token to your server.
+							stripeTokenHandler(result.token);
+						}
+					});
+				});
+		
+				// Submit the form with the token ID.
+				function stripeTokenHandler(token) {
+					// Insert the token ID into the form so it gets submitted to the server
+					var form = document.getElementById('payment-form');
+					var hiddenInput = document.createElement('input');
+					hiddenInput.setAttribute('type', 'hidden');
+					hiddenInput.setAttribute('name', 'stripeToken');
+					hiddenInput.setAttribute('value', token.id);
+					form.appendChild(hiddenInput);
+		
+					// Submit the form
+					form.submit();
+				}
+			</script>
+	</body>
+</html>
